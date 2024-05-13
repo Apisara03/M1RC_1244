@@ -362,13 +362,13 @@ double map(double value, double in_min, double in_max, double out_min, double ou
 
 void VescDriver::joyCallback(const sensor_msgs::msg::Joy::SharedPtr joy)
 {
-  if (joy->buttons[5]==1) {
+  if (joy->buttons[5]==0) {
     // Extract the linear and angular velocities from the joy message
-    double linear_vel = joy->axes[1]; 
+    double linear_vel = joy->axes[4]; 
     double angular_vel = joy->axes[0];
 
     // Convert linear and angular velocities to VESC motor controller commands
-    double motor_speed = map(linear_vel, -1.0, 1.0, -10000.0, 10000.0);
+    double motor_speed = map(linear_vel, -1.0, 1.0, -2000.0, 2000.0);
     vesc_.setSpeed(motor_speed);
     // Publish motor_speed
     //auto motor_speed_msg = Float64();
